@@ -1,0 +1,28 @@
+<h1>Quora-Clone</h1>
+<p>The best answer to any question</p>
+
+<div class="signup">
+	<form action="signup" method="post">
+		Signup <br>
+		Full Name <input type="text" name="user[name]" placeholder="Full Name"><br>
+		Email <input type="text" name="user[email]" placeholder="email"><br>
+		Password <input type="password" name="user[password]" placeholder="password"><br>
+		Confirm Password <input type="password" name="user[password_confirmation]" placeholder="reconfirm password"><br>
+		<input type="submit" value="Sign Up">
+	</form>
+</div>
+
+<% if session[:error] %>
+	<%=session[:error] %>
+<% end %>
+
+<div class="login">
+<form action="login" method="post">
+	Login <br>
+	<input type="text" name="user[email]" placeholder="Email"><br>
+	<input type="password" name="user[password]" placeholder="Password"><br>
+	<input type="submit" value="Login">
+</form>
+</div>	
+
+
