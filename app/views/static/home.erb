@@ -12,9 +12,7 @@
 	</form>
 </div>
 
-<% if session[:error] %>
-	<%=session[:error] %>
-<% end %>
+<%=@error if @error != nil %>
 
 <div class="login">
 <form action="login" method="post">

@@ -1,5 +1,9 @@
 require 'byebug'
+enable :sessions
+
 get '/' do
+	@error = session[:error]
+	session[:error] = nil
   erb :"static/home"
 end
 
@@ -19,11 +23,20 @@ post '/signup' do
 end
 
 post '/login' do
-	user = User.find_by(email: params["user"]["email"])
-	if user and user.authenticate(params["user"]["email"])
+	user = User.authentication(params["user"]["email"], params["user"]["password"])
+	if user != nil
 		session[:id] = user.id
 		redirect '/main'
 	else
+		session[:error] = "Invalid email or password"
+		redirect '/'
 	end
-
 end
+
+post '/logout' do
+	session[:id] = nil
+	redirect '/'
+end
+
+
+
