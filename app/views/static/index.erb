@@ -1,9 +1,16 @@
 <h1>Welcome to Quora Clone</h1>
-<p>Questions</p>
-<p>Answers</p>
 
-<div class="logout">
-	<form action="logout" method="post">
-		<input type="submit" value="Logout">
+<div class="ask">
+	<form action="/question" method="post">
+		<input type="text" name="question[question]" placeholder="Ask Question on Quora">
+		<input type="submit" value="Ask Question">
 	</form>
 </div>
+
+<% if @questions != nil %>
+	<% @questions.each do |q| %>
+		<li> <%= q.question %><a href="/question/<%= q.id %>/edit">Edit</a></li>
+	<% end %>
+<% end %>
+
+

@@ -1,0 +1,16 @@
+<h1>Edit Question</h1>
+
+<div class="edit">
+	<form action="/question/<%= @question.id %>" method="post">
+		<input type="hidden" name="_method" value="put">
+		<input type="text" name="question[question]" value="<%= @question.question%>">
+		<input type="submit" value="Edit">
+	</form>
+</div>
+
+<div class="delete">
+	<form action="/question/<%= @question.id %>" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete"> (<b>ATTENTION: THIS ACTION IS NOT REVERSIBLE</b>)
+	</form>
+</div>

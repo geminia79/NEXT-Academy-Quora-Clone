@@ -1,8 +1,30 @@
 <html>
 	<head>
-		<title>Sinatra Framework</title>
+		<title>Quora-Clone</title>
 	</head>
 	<body>
+		<div id="navbar">
+			<div>
+				<a href="/"><h1>Home</h1></a>
+			</div>
+			<div>
+				<% if logged_in? %>
+					<%= current_user.name %>
+					<div class="logout">
+						<form action="/logout" method="post">
+							<input type="submit" value="Logout">
+						</form>
+					</div>
+				<% else %>
+					<%= "Guest" %>
+					<div class="login">
+						<form action="/login" method="post">
+							<input type="submit" value="Login">
+						</form>
+					</div>	
+				<% end %>	
+			</div>
+		</div>
 		<%= yield %>
 	</body>
 </html>

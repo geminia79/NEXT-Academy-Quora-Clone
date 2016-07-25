@@ -2,7 +2,7 @@
 <p>The best answer to any question</p>
 
 <div class="signup">
-	<form action="signup" method="post">
+	<form action="/signup" method="post">
 		Signup <br>
 		Full Name <input type="text" name="user[name]" placeholder="Full Name"><br>
 		Email <input type="text" name="user[email]" placeholder="email"><br>
@@ -12,15 +12,15 @@
 	</form>
 </div>
 
-<%=@error if @error != nil %>
+<% if @message != nil %>
+	<%= @message %>
+<% end %>
 
 <div class="login">
-<form action="login" method="post">
+<form action="/sessions" method="post">
 	Login <br>
 	<input type="text" name="user[email]" placeholder="Email"><br>
 	<input type="password" name="user[password]" placeholder="Password"><br>
 	<input type="submit" value="Login">
 </form>
 </div>	
-
-
