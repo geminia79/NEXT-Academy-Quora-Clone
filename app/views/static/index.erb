@@ -9,8 +9,12 @@
 
 <% if @questions != nil %>
 	<% @questions.each do |q| %>
-		<li> <%= q.question %><a href="/question/<%= q.id %>/edit">Edit</a></li>
+		<li> 
+		<a href="/question/<%= q.id %>"><%= q.question %></a>
+		</li>
 	<% end %>
 <% end %>
+
+
 
 

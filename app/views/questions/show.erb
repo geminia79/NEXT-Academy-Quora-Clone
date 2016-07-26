@@ -1,0 +1,23 @@
+<h1><%=@question.question%></h1>
+
+<% if logged_in? and @question.user_id == session[:id] %>
+		<a href="/question/<%= @question.id %>/edit">Edit</a>
+<% end %>
+
+<% @question.answers.each do |a| %>
+	<li> 
+	<%= a.answer %> 
+	<% if logged_in? and a.user_id == session[:id] %>
+		<a href="/answer/<%= a.id %>/edit">Edit</a>
+	<% end %>
+	</li>
+<% end %>
+
+
+<div class="answer">
+	<form action="/answer" method="post">
+		<input type="text" name="answer[answer]" placeholder="Your Answer Here">
+		<input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
+		<input type="submit" value="Answer">
+	</form>
+</div>
