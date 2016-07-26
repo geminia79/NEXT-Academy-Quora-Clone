@@ -1,3 +1,4 @@
+
 <h1>Welcome to Quora Clone</h1>
 
 <div class="ask">
@@ -12,6 +13,19 @@
 		<li> 
 		<a href="/question/<%= q.id %>"><%= q.question %></a>
 		</li>
+		<% if q.answers.last != nil %>
+			<%= q.answers.last.answer %>
+		<% end %>
+		<div class="upvote">
+			<form action="/question/<%=q.id%>/upvote" method="post">
+				<input type="submit" value="Upvote">
+			</form>
+		</div>
+		<div class="downvote">
+			<form action="/question/<%=q.id%>/downvote" method="post">
+				<input type="submit" value="Downvote">
+			</form>
+		</div>
 	<% end %>
 <% end %>
 

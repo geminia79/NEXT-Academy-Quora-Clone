@@ -31,6 +31,7 @@ put '/question/:id' do # update question
 end
 
 delete '/question/:id' do
+	Answer.where(question_id: params[:id]).delete_all
 	Question.find(params[:id]).destroy
 	redirect to '/'
 end
