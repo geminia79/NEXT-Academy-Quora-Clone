@@ -1,4 +1,9 @@
+<% if @message %>
+<%= @message %>
+<% end %>
 <h1><%=@question.question%></h1>
+<h4><%= @question.count_upvotes %> upvotes</h4>
+<h4><%= @question.count_downvotes %> downvotes</h4>
 
 <% if logged_in? and @question.user_id == session[:id] %>
 		<a href="/question/<%= @question.id %>/edit">Edit</a>

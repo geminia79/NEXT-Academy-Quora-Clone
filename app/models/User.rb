@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 	has_many :questions
 	has_many :answers
-	has_many :questionvotes
-	has_many :answervotes
+	has_many :question_votes
+	has_many :answer_votes
 
 	has_secure_password
   validates :email, :name, presence: true, uniqueness: true
