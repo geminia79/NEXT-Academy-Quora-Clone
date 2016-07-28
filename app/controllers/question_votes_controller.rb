@@ -1,4 +1,3 @@
-require 'byebug'
 post '/question/:id/upvote' do 
 	if logged_in?
 		vote = QuestionVote.find_by(question_id: params[:id], user_id: current_user.id)

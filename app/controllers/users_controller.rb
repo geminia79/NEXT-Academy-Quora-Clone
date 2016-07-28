@@ -1,4 +1,3 @@
-require 'byebug'
 get '/users/:id' do
 	@questions = current_user.questions
 	@answers = current_user.answers

@@ -1,7 +1,7 @@
 <%= @message if @message %>
 
-<% @question.tags.each do |t| %>
-	<%= t.content + " | " %>
+<%="Tags: "%><% @question.tags.each do |t| %>
+	<a href="/tags/<%=t.id%>"><%= t.content + " | " %></a>
 <% end %>
 
 <h2><%=@question.question%>
@@ -29,7 +29,6 @@
 		</div>
 <% end %>
 
-
 <div class="answer">
 	<form action="/answer" method="post">
 		<input type="text" name="answer[answer]" placeholder="Your Answer Here">
@@ -41,7 +40,7 @@
 <div class="add_tag">
 	<form method="post" action="/questions/<%=@question.id%>/tags">
 		<input type="text" name="tag[content]" placeholder="What's your tag">
-		<input type="submit" value="Make Tag now">
+		<input type="submit" value="Add Tag">
 	</form>
 </div>
 

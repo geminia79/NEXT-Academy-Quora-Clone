@@ -1,4 +1,3 @@
-require 'byebug'
 post '/answer' do
 	if logged_in?
 		answer = Answer.answer(params["answer"]["question_id"], session[:id], params["answer"]["answer"])

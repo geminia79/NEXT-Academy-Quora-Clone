@@ -1,5 +1,5 @@
 post '/questions/:id/tags' do 
-	@question = Question.find_by(id: params[:id])
+	question = Question.find_by(id: params[:id])
 	tag = params[:tag][:content].split(",")
 	tag.each do |t|
 		new_tag = Tag.find_by_content(t)
@@ -8,7 +8,7 @@ post '/questions/:id/tags' do
 		end
 		QuestionTag.create(question_id: params[:id], tag_id: new_tag.id)
 	end
-	redirect '/'
+	redirect '/question/' + question.id.to_s
 end
 
 get '/tags/:id' do

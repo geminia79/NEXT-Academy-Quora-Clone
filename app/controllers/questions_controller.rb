@@ -1,4 +1,3 @@
-
 post '/question' do
 	if logged_in?
 		question = Question.ask_question(session[:id], params["question"]["question"])
