@@ -1,33 +1,29 @@
 
-<h1>Welcome to Quora Clone</h1>
-
-<div class="ask">
 	<form action="/question" method="post">
 		<input type="text" name="question[question]" placeholder="Ask Question on Quora">
 		<input type="submit" value="Ask Question">
 	</form>
-</div>
+
 
 <% if @questions != nil %>
 	<% @questions.each do |q| %>
 		<li> 
 		<a href="/question/<%= q.id %>"><%= q.question %></a>
 		</li>
-		<% if q.answers.last != nil %>
-			<%= q.answers.last.answer %>
-		<% end %>
-		<div class="upvote">
+
 			<form action="/question/<%=q.id%>/upvote" method="post">
-				<input type="submit" value="Upvote">
+				<input type="submit" value="Upvote | <%= q.count_upvotes %>">
 			</form>
-		</div>
-		<div class="downvote">
+
 			<form action="/question/<%=q.id%>/downvote" method="post">
-				<input type="submit" value="Downvote">
+				<input type="submit" value="Downvote | <%= q.count_downvotes %>">
 			</form>
-		</div>
+
+		<%= q.answers.last.answer if q.answers.last %>
 	<% end %>
 <% end %>
+
+<%= will_paginate @questions %>
 
 
 

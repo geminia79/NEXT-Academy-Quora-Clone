@@ -1,0 +1,92 @@
+body {
+	background-color: ghostwhite;
+}
+
+#navbar {
+	background-color: indianred;
+	display: flex;
+	justify-content: space-between;
+}
+
+#navbar button {
+	background-color: royalblue;
+	color: white;
+}
+
+.user {
+	padding-top: 12px;
+}
+
+#navbar a {
+	text-decoration: none;
+	font-size: 22px;
+	font-family: "Avant Garde",sans-serif;
+	color: white;
+	padding-top: 12px;
+	padding-left: 10px;
+}
+
+#navbar input {
+	color: white;
+	font-size: 14px;
+	background-color: royalblue;
+	margin-top: 12px;
+	margin-right: 12px;
+}
+
+#main-container {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+#login-container {
+	max-width: 600px;
+	max-height: 300px;
+	margin: 0 auto;
+}
+
+#login-container h1{
+	text-align: center;
+	color: maroon;
+	font-size: 36px;
+}
+
+#login-container p {
+	text-align: center;
+	font-size: 26px;
+}
+
+#signup-form {
+	float: left;
+	font-size: 18px;
+	color: darkblue;
+}
+
+#login-form {
+	float: right;
+	font-size: 18px;
+	color: darkblue;
+}
+
+#message {
+	max-width: 500px;
+	margin: 0 auto;
+	color: red;
+	padding-top: 180px;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

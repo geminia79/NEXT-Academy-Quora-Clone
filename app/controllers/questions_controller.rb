@@ -1,4 +1,4 @@
-require 'byebug'
+
 post '/question' do
 	if logged_in?
 		question = Question.ask_question(session[:id], params["question"]["question"])
@@ -10,7 +10,7 @@ post '/question' do
 end
 
 get '/' do
-	@questions = Question.all
+	@questions = Question.all.paginate(page: params[:page], per_page: 5)
 	erb :"static/index"
 end
 

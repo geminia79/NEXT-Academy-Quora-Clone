@@ -1,0 +1,15 @@
+<h1><%=current_user.name %> Profile Page</h1>
+
+<button><a href="/users/<%=current_user.id%>/edit">Edit</a></button>
+
+<%= @message if @message %>
+
+<h2> Questions Asked </h2>
+<% @questions.all.each do |q| %>
+	<li><a href="/question/<%=q.id%>"><%= q.question %></a></li>
+<% end %>
+
+<h3> Answers Given</h3>
+<% @answers.all.each do |a| %>
+	<li><a href="/question/<%=a.question_id%>"><%= a.answer %></a></li>
+<% end %>

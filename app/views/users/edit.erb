@@ -1,0 +1,10 @@
+<p>Edit Your Profile</p>
+
+<form action="/users/<%= current_user.id %>" method="post">
+	<input type="hidden" name="_method" value="put">
+	Name: <input type="text" name="user[name]" value="<%= current_user.name%>"><br>
+	Email: <input type="text" name="user[email]" value="<%= current_user.email%>"><br>
+	<input type="submit" value="Save">
+</form>
+
+<%= @message if @message %>

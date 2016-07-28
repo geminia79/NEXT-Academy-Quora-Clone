@@ -27,6 +27,9 @@ gem 'rspec'
 # Adding encryption for password
 gem 'bcrypt'
 
+# Add pagination
+gem 'will_paginate'
+
 group :development, :test do
 	# Adding shotgun for local web hosting
 	gem 'shotgun'

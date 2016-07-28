@@ -1,13 +1,14 @@
-<% if @message %>
-<%= @message %>
-<% end %>
-<h1><%=@question.question%></h1>
-<h4><%= @question.count_upvotes %> upvotes</h4>
-<h4><%= @question.count_downvotes %> downvotes</h4>
+<%= @message if @message %>
 
-<% if logged_in? and @question.user_id == session[:id] %>
+<% @question.tags.each do |t| %>
+	<%= t.content + " | " %>
+<% end %>
+
+<h2><%=@question.question%>
+	<% if logged_in? and @question.user_id == session[:id] %>
 		<a href="/question/<%= @question.id %>/edit">Edit</a>
 <% end %>
+</h2>
 
 <% @question.answers.each do |a| %>
 	<li> 
@@ -16,6 +17,16 @@
 		<a href="/answer/<%= a.id %>/edit">Edit</a>
 	<% end %>
 	</li>
+	<div class="upvote">
+			<form action="/answer/<%=a.id%>/upvote" method="post">
+				<input type="submit" value="Upvote | <%= a.count_upvotes %>">
+			</form>
+		</div>
+		<div class="downvote">
+			<form action="/answer/<%=a.id%>/downvote" method="post">
+				<input type="submit" value="Downvote | <%= a.count_downvotes %>">
+			</form>
+		</div>
 <% end %>
 
 
@@ -26,3 +37,29 @@
 		<input type="submit" value="Answer">
 	</form>
 </div>
+
+<div class="add_tag">
+	<form method="post" action="/questions/<%=@question.id%>/tags">
+		<input type="text" name="tag[content]" placeholder="What's your tag">
+		<input type="submit" value="Make Tag now">
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
