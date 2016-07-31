@@ -2,25 +2,31 @@ body {
 	background-color: ghostwhite;
 }
 
+/*login and signup page*/
+
 #navbar {
 	background-color: indianred;
 	display: flex;
-	justify-content: space-between;
 }
 
 #navbar button {
-	background-color: royalblue;
-	color: white;
+	padding-right: 20px;
+	height: 40px;
+	padding-top: 4px;
+	margin-top: 8px;
+	margin-right: 10px;
 }
 
 .user {
-	padding-top: 12px;
+	padding-top: 18px;
+	font-size: 16px;
+	color: white;
 }
 
 #navbar a {
 	text-decoration: none;
 	font-size: 22px;
-	font-family: "Avant Garde",sans-serif;
+	font-family: Arial, sans-serif;
 	color: white;
 	padding-top: 12px;
 	padding-left: 10px;
@@ -49,33 +55,49 @@ body {
 	text-align: center;
 	color: maroon;
 	font-size: 36px;
+	font-style: italic;
+	font-family: Verdana, sans-serif;
+	font-weight: 600;
 }
 
 #login-container p {
 	text-align: center;
-	font-size: 26px;
+	font-size: 22px;
+	font-family: Verdana, sans-serif;
 }
 
-#signup-form {
+#signup-login-form {
+	font-size: 16px;
+	color: darkblue;
+	max-width: 500px;
+	height: 190px;
+	margin: 0 auto;
+	margin-top: 20px;
+	background-color: white;
+	border: groove;
+	border-radius: 5px;
+}
+
+.signup {
 	float: left;
-	font-size: 18px;
-	color: darkblue;
+	margin-left: 10px;
+	margin-top: 5px;
 }
-
-#login-form {
+.login {
 	float: right;
-	font-size: 18px;
-	color: darkblue;
+	margin-right: 10px;
+	margin-top: 30px;
 }
 
 #message {
 	max-width: 500px;
 	margin: 0 auto;
 	color: red;
-	padding-top: 180px;
 	text-align: center;
+	padding-top: 20px;
 }
 
+/*Main pages*/
 
 
 

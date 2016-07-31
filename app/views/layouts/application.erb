@@ -2,19 +2,19 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="/css/application.css">
 		<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<title>Quora-Clone</title>
 	</head>
 	<body>
 		<div id="navbar">
-			<a href="/">Home</a>
+			<a href="/">Quores</a>
 				<% if logged_in? %>
-					<div class="user"><%= "Welcome " + current_user.name %></div>
 					<form action="/logout" method="post">
 						<input type="submit" value="Logout">
 					</form>
-					<button><a href="/users/<%=current_user.id%>">Profile</a></button>
+					<button class="btn btn-primary" ><a href="/users/<%=current_user.id%>"><%=current_user.name %></a></button>
 				<% else %>
-					<div class="user"><%= "Welcome Guest" %></div>
+					<div class="user"><%= "Guest" %></div>
 					<form action="/login" method="post">
 						<input type="submit" value="Login">
 					</form>

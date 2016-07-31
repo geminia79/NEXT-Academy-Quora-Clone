@@ -1,22 +1,21 @@
 <div id="login-container">
-		<h1>Quora-Clone</h1>
-		<p>The best answer to any question</p>
-		<div id="signup-form">
-			<form  action="/signup" method="post">
+		<h1>Quores</h1>
+		<p>Best insights from around the world</p>
+		<div id="signup-login-form">
+			<form class="signup" action="/signup" method="post">
 				Signup <br>
 				<input type="text" name="user[name]" placeholder="Full Name"><br>
 				<input type="text" name="user[email]" placeholder="Email"><br>
 				<input type="password" name="user[password]" placeholder="Password"><br>
 				<input type="password" name="user[password_confirmation]" placeholder="Confirm Password"><br>
-				<input type="submit" value="Sign Up">
+				<input class="btn btn-primary" type="submit" value="Sign Up">
 			</form>
-		</div>
-		<div id="login-form">
-			<form  action="/sessions" method="post">
+
+			<form class="login"  action="/sessions" method="post">
 				Login <br>
 				<input type="text" name="user[email]" placeholder="Email"><br>
 				<input type="password" name="user[password]" placeholder="Password"><br>
-				<input type="submit" value="Login">
+				<input class="btn btn-primary" type="submit" value="Login">
 			</form>
 		</div>
 </div>	
