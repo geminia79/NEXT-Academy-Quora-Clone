@@ -7,37 +7,23 @@ body {
 #navbar {
 	background-color: indianred;
 	display: flex;
+	justify-content: space-between;
 }
 
-#navbar button {
-	padding-right: 20px;
-	height: 40px;
-	padding-top: 4px;
-	margin-top: 8px;
-	margin-right: 10px;
-}
-
-.user {
-	padding-top: 18px;
-	font-size: 16px;
-	color: white;
-}
-
-#navbar a {
+.quores  {
 	text-decoration: none;
 	font-size: 22px;
-	font-family: Arial, sans-serif;
+	font-style: italic;
+	font-family: Verdana, sans-serif;
 	color: white;
-	padding-top: 12px;
-	padding-left: 10px;
+	padding-top: 8px;
+	padding-left: 12px;
+	padding-bottom: 8px;
 }
 
-#navbar input {
-	color: white;
-	font-size: 14px;
-	background-color: royalblue;
-	margin-top: 12px;
-	margin-right: 12px;
+.btn-group {
+	margin-top: 7px;
+	margin-right: 90px;
 }
 
 #main-container {

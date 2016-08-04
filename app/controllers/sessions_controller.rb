@@ -25,11 +25,11 @@ post '/signup' do
 	end
 end
 
-post '/login' do
+get '/login' do
 	erb :"sessions/new"
 end
 
-post '/logout' do
+get '/logout' do
 	session[:id] = nil
 	redirect '/'
 end
