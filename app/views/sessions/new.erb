@@ -1,27 +1,31 @@
 <div id="login-container">
-		<h1>Quores</h1>
-		<p>Best insights from around the world</p>
-		<div id="signup-login-form">
-			<form class="signup" action="/signup" method="post">
-				Signup <br>
-				<input type="text" name="user[name]" placeholder="Full Name"><br>
-				<input type="text" name="user[email]" placeholder="Email"><br>
-				<input type="password" name="user[password]" placeholder="Password"><br>
-				<input type="password" name="user[password_confirmation]" placeholder="Confirm Password"><br>
-				<input class="btn btn-primary" type="submit" value="Sign Up">
-			</form>
+		<h1 class="text-center text-primary"><i>Quores</i></h1>
+		<p class="text-center">Best insights from around the world</p>
+		<hr>
 
-			<form class="login"  action="/sessions" method="post">
-				Login <br>
-				<input type="text" name="user[email]" placeholder="Email"><br>
-				<input type="password" name="user[password]" placeholder="Password"><br>
-				<input class="btn btn-primary" type="submit" value="Login">
-			</form>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="form-group col-md-3 panel panel-default">
+				<form class="signup" action="/signup" method="post">
+					<span class="text-center">SIGN UP</span><br>
+					<input class="form-control" type="text" name="user[name]" placeholder="Full Name"><br>
+					<input class="form-control" type="text" name="user[email]" placeholder="Email"><br>
+					<input class="form-control" type="password" name="user[password]" placeholder="Password"><br>
+					<input class="form-control" type="password" name="user[password_confirmation]" placeholder="Confirm Password"><br>
+					<input class="btn btn-primary form-control" type="submit" value="Sign Up">
+				</form>
+				<br>
+			</div>
+			<div class="form-group col-md-3 panel panel-default">
+				<form class="login" action="/sessions" method="post">
+					LOGIN<br>
+					<input class="form-control" type="text" name="user[email]" placeholder="Email"><br>
+					<input class="form-control" type="password" name="user[password]" placeholder="Password"><br>
+					<input class="btn btn-primary form-control" type="submit" value="Login">
+				</form>
+				<br>
+			</div>
+			<div class="col-md-3"></div>
 		</div>
+		<p class="text-center text-danger"><%= @message if @message %></p>
 </div>	
-
-	<div id="message">		
-		<% if @message != nil %>
-			<%= @message %>
-		<% end %>
-	</div>
