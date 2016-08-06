@@ -1,10 +1,18 @@
-<p>Edit Your Profile</p>
 
-<form action="/users/<%= current_user.id %>" method="post">
-	<input type="hidden" name="_method" value="put">
-	Name: <input type="text" name="user[name]" value="<%= current_user.name%>"><br>
-	Email: <input type="text" name="user[email]" value="<%= current_user.email%>"><br>
-	<input type="submit" value="Save">
-</form>
-
-<%= @message if @message %>
+<div class="row">
+	<div class="col-md-3"></div>
+		<div class="col-md-6 form-group">
+			<h3>Edit Your Profile</h3>
+			<hr>
+				<form action="/users/<%= current_user.id %>" method="post">
+					<input type="hidden" name="_method" value="put">
+					<h5 class="text-primary">Name:</h5><input class="form-control" type="text" name="user[name]" value="<%= current_user.name%>"><br>
+					<h5 class="text-primary">Email:</h5> <input class="form-control" type="text" name="user[email]" value="<%= current_user.email%>"><br>
+					<input class="btn btn-primary" type="submit" value="Confirm">
+				</form>
+			<hr>
+				<p class="text-danger"><%= @message if @message %></p>	
+		</div>
+	</div>
+	<div class="col-md-3"></div>
+</div>

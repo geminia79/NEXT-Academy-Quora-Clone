@@ -1,15 +1,36 @@
-<h1><%=current_user.name %> Profile Page</h1>
-
-<button><a href="/users/<%=current_user.id%>/edit">Edit</a></button>
-
-<%= @message if @message %>
-
-<h2> Questions Asked </h2>
-<% @questions.all.each do |q| %>
-	<li><a href="/question/<%=q.id%>"><%= q.question %></a></li>
-<% end %>
-
-<h3> Answers Given</h3>
-<% @answers.all.each do |a| %>
-	<li><a href="/question/<%=a.question_id%>"><%= a.answer %></a></li>
-<% end %>
+<div class="row">
+  <div class="col-md-4"><h3 class="text-muted"><%=@user.name %> Profile Page</h3>
+  <hr>
+	  <div class="list-group">
+	    <p><%= "Name: " + @user.name %></p>
+	    <hr>
+	    <p><%= "Email: " + @user.email %></p>
+	    <hr>
+	    <% if logged_in? and @user.id == current_user.id%>
+	    	<button class="btn btn-info"><a href="/users/<%=current_user.id%>/edit">Edit Profile</a></button>
+	    <% end %>	
+      <hr>
+      <p><%= @message if @message %></p>
+	  </div>
+	</div>
+  <div class="col-md-8">
+    <h3 class="text-muted">Questions and Answers Provided By <%= @user.name %></h3>
+    <hr>
+    <div class="list-group">
+    	<h4 class="text-muted">Questions Asked</h4>
+      <% if @questions %>
+      	<% @questions.each do |q| %>
+        	<li class="list-group-item-heading"><a href="/question/<%= q.id %>"><%= q.question %></a></li>
+      	<% end %>
+      	<hr>
+    	<% end %>
+    	<h4 class="text-muted">Answers Given</h4>
+    		<% if @answers %>
+	      	<% @answers.each do |a| %>
+	        	<li class="list-group-item-heading"><a href="/question/<%=a.question_id%>"><%= a.answer %></a></li>
+	      	<% end %>
+      	<hr>
+    	<% end %>
+    </div>
+  </div>
+</div>

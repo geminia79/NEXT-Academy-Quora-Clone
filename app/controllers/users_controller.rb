@@ -1,6 +1,8 @@
+
 get '/users/:id' do
-	@questions = current_user.questions
-	@answers = current_user.answers
+	@user = User.find(params[:id])
+	@questions = @user.questions
+	@answers = @user.answers
 	erb :'users/show'
 end
 
@@ -9,9 +11,9 @@ get '/users/:id/edit' do
 end
 
 put '/users/:id' do
-	user = current_user
-	user.update(params[:user])
-	if user.valid?
+	@user = current_user
+	@user.update(params[:user])
+	if @user.valid?
 		@message = "Profile Updated"
 		@questions = current_user.questions
 		@answers = current_user.answers

@@ -10,6 +10,7 @@ post '/question' do
 end
 
 get '/' do
+	# most upvoted questions
 	trending = {}
 	@trending = []
 	upvoted = QuestionVote.where(vote: 1) # extract all the upvoted questions
@@ -24,8 +25,11 @@ get '/' do
 		# store the first 5 sorted question id in an array
 		@trending << key
 	end
-
+	# all questions
 	@questions = Question.order(created_at: :desc).all.paginate(page: params[:page], per_page: 5)
+	# new users
+	@users = User.order(created_at: :desc).limit(5)
+
 	erb :"static/index"
 end
 
@@ -47,6 +51,8 @@ end
 
 delete '/question/:id' do
 	Answer.where(question_id: params[:id]).delete_all
+	QuestionVote.where(question_id: params[:id]).delete_all
+	QuestionTag.where(question_id: params[:id]).delete_all
 	Question.find(params[:id]).destroy
 	redirect to '/'
 end

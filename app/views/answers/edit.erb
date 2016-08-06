@@ -1,16 +1,39 @@
-<h1>Edit Answer</h1>
+<div class="row">
+<div class="col-md-2"></div>
+	<div class="col-md-8 form-group">
+	<h3 class="text-primary">Edit / Delete Answer</h3>
+	<hr>
+		<form action="/answer/<%= @answer.id %>" method="post">
+			<input type="hidden" name="_method" value="put">
+			<input class="form-control" type="text" name="answer[answer]" value="<%= @answer.answer%>">
+			<input class="btn btn-primary" type="submit" value="Edit">
+		</form>
+		<br>
 
-<div class="edit">
-	<form action="/answer/<%= @answer.id %>" method="post">
-		<input type="hidden" name="_method" value="put">
-		<input type="text" name="answer[answer]" value="<%= @answer.answer%>">
-		<input type="submit" value="Edit">
-	</form>
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+	</div>
+<div class="col-md-2"></div>
 </div>
 
-<div class="delete">
-	<form action="/answer/<%= @answer.id %>" method="post">
-		<input type="hidden" name="_method" value="delete">
-		<input type="submit" value="Delete"> (<b>ATTENTION: THIS ACTION IS NOT REVERSIBLE</b>)
-	</form>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="modal-title" id="myModalLabel">Delete Answer</h4>
+	    </div>
+	    <div class="modal-body form-group">
+	    	<p class="text-center text-danger">ATTENTION: THIS ACTION IS NOT REVERSIBLE</p>
+	      <form method="post" action="/answer/<%= @answer.id %>">
+	      	<input type="hidden" name="_method" value="delete">
+					<input type="submit" value="Delete">
+			</form>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    </div>
+	  </div>
+	</div>
 </div>
+

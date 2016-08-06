@@ -1,5 +1,12 @@
-<h1><%=@tag.content%></h1>
+<div class="row">
 
-<% @questions.each do |question| %>
-	<p><%= question.question %></p>
-<% end %>
+<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h4 class="text-primary"><%=@tag.content%></h4>
+				<% @questions.each do |question| %>
+					<p><%= question.question %></p>
+					<hr>
+				<% end %>
+		</div>
+	<div class="col-md-2"></div>
+</div>

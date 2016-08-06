@@ -21,6 +21,7 @@ end
 
 delete '/answer/:id' do # delete answer
 	answer = Answer.find(params[:id])
+	AnswerVote.where(answer_id: params[:id]).delete_all
 	Answer.find(params[:id]).destroy
 	redirect to '/question/' + answer.question_id.to_s
 end

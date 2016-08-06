@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-3"><p>Trending Now</p>
+	<div class="col-md-3"><h4 class="text-muted">Most Upvoted Questions</h4>
 	<hr>
 	<div class="list-group">
 		<% if @trending %>
@@ -12,13 +12,13 @@
 
 	</div>
 	<div class="col-md-6">
-		<p>Latest Stories</p>
+		<h4 class="text-muted">Latest Stories</h4>
 		<hr>
 		<div class="list-group">
 			<% if @questions %>
 			<% @questions.each do |q| %>
 				<h4 class="list-group-item-heading"><a href="/question/<%= q.id %>"><%= q.question %></a></h4>
-				<%= q.user.name %>
+				<a href="/users/<%=q.user_id%>"><%= q.user.name %></a>
 				<p class="list-group-item-text"><%= q.answers.last.answer if q.answers.last %></p>
 				<div class="row">
 					<form class="col-md-2" action="/question/<%=q.id%>/upvote" method="post">
@@ -36,8 +36,14 @@
 
 	<%= will_paginate @questions %>
 	</div>
-	<div class="col-md-3"><p>Most actve user</p>
+	<div class="col-md-3 panel panel-default text-center"><h4 class="text-muted">New Users</h4>
 	<hr>
+	<% if @users %>
+			<% @users.each do |user| %>
+				<div class="panel-body"><a href="/users/<%= user.id %>"><%= user.name + " | " + user.email %></a></div>
+				<hr>
+			<% end %>
+		<% end %>
 	</div>
 </div>
 

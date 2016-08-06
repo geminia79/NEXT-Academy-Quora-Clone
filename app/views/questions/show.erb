@@ -1,55 +1,92 @@
-<%= @message if @message %>
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		
+		<ul class="list-inline">
+			<%="Tags: "%><% @question.tags.each do |t| %>
+				<li><a href="/tags/<%=t.id%>"><%= t.content %></a></li>
+			<% end %>
+		</ul>
 
-<%="Tags: "%><% @question.tags.each do |t| %>
-	<a href="/tags/<%=t.id%>"><%= t.content + " | " %></a>
-<% end %>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#tagModal">Add Tag</button>
 
-<h2><%=@question.question%>
-	<% if logged_in? and @question.user_id == session[:id] %>
-		<a href="/question/<%= @question.id %>/edit">Edit</a>
-<% end %>
-</h2>
+		
+		<h3><%=@question.question%>
+			<% if logged_in? and @question.user_id == current_user.id %>
+				<a href="/question/<%= @question.id %>/edit">Edit</a>
+		<% end %>
+		</h3>
 
-<% @question.answers.each do |a| %>
-	<li> 
-	<%= a.answer %> 
-	<% if logged_in? and a.user_id == session[:id] %>
-		<a href="/answer/<%= a.id %>/edit">Edit</a>
-	<% end %>
-	</li>
-	<div class="upvote">
-			<form action="/answer/<%=a.id%>/upvote" method="post">
-				<input type="submit" value="Upvote | <%= a.count_upvotes %>">
-			</form>
-		</div>
-		<div class="downvote">
-			<form action="/answer/<%=a.id%>/downvote" method="post">
-				<input type="submit" value="Downvote | <%= a.count_downvotes %>">
-			</form>
-		</div>
-<% end %>
+		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#ansModal">Answer</button>
+		<strong class="text-danger"><%= @message if @message %></strong>
+		<hr>
 
-<div class="answer">
-	<form action="/answer" method="post">
-		<input type="text" name="answer[answer]" placeholder="Your Answer Here">
-		<input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
-		<input type="submit" value="Answer">
-	</form>
+		<% @question.answers.each do |a| %>
+			<li> 
+			<%= a.answer %> 
+			<% if logged_in? and a.user_id == current_user.id %>
+				<a href="/answer/<%= a.id %>/edit">Edit</a>
+			<% end %>
+			</li>
+			<div class="row">
+				<form class="col-md-2" action="/answer/<%=a.id%>/upvote" method="post">
+					<input class="btn btn-xs btn-info" type="submit" value="Upvote | <%= a.count_upvotes %>">
+				</form>
+				<form class="col-md-2" action="/answer/<%=a.id%>/downvote" method="post">
+					<input class="btn btn-xs btn-secondary" type="submit" value="Downvote | <%= a.count_downvotes %>">
+				</form>
+				<div class="col-md-8"></div>
+			</div>
+			<hr>
+		<% end %>
+	<div class="col-md-2"></div>
+	</div>
 </div>
 
-<div class="add_tag">
-	<form method="post" action="/questions/<%=@question.id%>/tags">
-		<input type="text" name="tag[content]" placeholder="What's your tag">
-		<input type="submit" value="Add Tag">
-	</form>
+
+<!-- tagModal -->
+<div class="modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="modal-title" id="myModalLabel">Add Tags to Topic</h4>
+	    </div>
+	    <div class="modal-body form-group">
+	      <form method="post" action="/questions/<%=@question.id%>/tags">
+					<input class="form-control" type="text" name="tag[content]" placeholder="What's your tag">
+					<input class="btn btn-primary" type="submit" value="Add Tag">
+			</form>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    </div>
+	  </div>
+	</div>
 </div>
 
-
-
-
-
-
-
+<!-- ansModal -->
+<div class="modal fade" id="ansModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      <h4 class="modal-title" id="myModalLabel">Write your answer</h4>
+	    </div>
+	    <div class="modal-body form-group">
+	      <form method="post" action="/answer">
+					<input class="form-control" type="text" name="answer[answer]" placeholder="Your answer here">
+					<input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
+					<input class="btn btn-primary" type="submit" value="Answer">
+			</form>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    </div>
+	  </div>
+	</div>
+</div>
 
 
 
