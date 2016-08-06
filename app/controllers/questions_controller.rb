@@ -1,3 +1,4 @@
+require 'byebug'
 post '/question' do
 	if logged_in?
 		question = Question.ask_question(session[:id], params["question"]["question"])
@@ -9,7 +10,22 @@ post '/question' do
 end
 
 get '/' do
-	@questions = Question.all.paginate(page: params[:page], per_page: 5)
+	trending = {}
+	@trending = []
+	upvoted = QuestionVote.where(vote: 1) # extract all the upvoted questions
+	question_ids = upvoted.distinct.pluck(:question_id) # extract distinct question ids from the upvoted pool
+	question_ids.each do |id| 
+	# storing question id and upvote counts in a hash
+		trending[id.to_i] = upvoted.where(question_id: id.to_i).count
+	end
+	# sorting hash by value
+	trending = trending.sort_by {|k,v| v}.reverse.to_h
+	trending.first(5).each do |key, value|
+		# store the first 5 sorted question id in an array
+		@trending << key
+	end
+
+	@questions = Question.order(created_at: :desc).all.paginate(page: params[:page], per_page: 5)
 	erb :"static/index"
 end
 

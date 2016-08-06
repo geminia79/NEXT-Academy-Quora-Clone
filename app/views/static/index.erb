@@ -1,30 +1,44 @@
+<div class="row">
+	<div class="col-md-3"><p>Trending Now</p>
+	<hr>
+	<div class="list-group">
+		<% if @trending %>
+			<% @trending.each do |id| %>
+				<li class="list-group-item-text"><a href="/question/<%= id %>"><%= Question.find(id).question %></a></li>
+				<hr>
+			<% end %>
+		<% end %>
+	</div>
 
-	<form action="/question" method="post">
-		<input type="text" name="question[question]" placeholder="Ask Question on Quora">
-		<input type="submit" value="Ask Question">
-	</form>
+	</div>
+	<div class="col-md-6">
+		<p>Latest Stories</p>
+		<hr>
+		<div class="list-group">
+			<% if @questions %>
+			<% @questions.each do |q| %>
+				<h4 class="list-group-item-heading"><a href="/question/<%= q.id %>"><%= q.question %></a></h4>
+				<%= q.user.name %>
+				<p class="list-group-item-text"><%= q.answers.last.answer if q.answers.last %></p>
+				<div class="row">
+					<form class="col-md-2" action="/question/<%=q.id%>/upvote" method="post">
+						<input class="btn btn-xs btn-info" type="submit" value="Upvote | <%= q.count_upvotes %>">
+					</form>
+					<form class="col-md-2" action="/question/<%=q.id%>/downvote" method="post">
+						<input class="btn btn-xs btn-secondary"type="submit" value="Downvote | <%= q.count_downvotes %>">
+					</form>
+					<div class="col-md-8"></div>
+				</div>
+				<hr>
+			<% end %>
+		<% end %>
+		</div>
 
-
-<% if @questions != nil %>
-	<% @questions.each do |q| %>
-		<li> 
-		<a href="/question/<%= q.id %>"><%= q.question %></a>
-		</li>
-
-			<form action="/question/<%=q.id%>/upvote" method="post">
-				<input type="submit" value="Upvote | <%= q.count_upvotes %>">
-			</form>
-
-			<form action="/question/<%=q.id%>/downvote" method="post">
-				<input type="submit" value="Downvote | <%= q.count_downvotes %>">
-			</form>
-
-		<%= q.answers.last.answer if q.answers.last %>
-	<% end %>
-<% end %>
-
-<%= will_paginate @questions %>
-
-
+	<%= will_paginate @questions %>
+	</div>
+	<div class="col-md-3"><p>Most actve user</p>
+	<hr>
+	</div>
+</div>
 
 
