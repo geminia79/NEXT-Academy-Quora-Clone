@@ -1,39 +1,68 @@
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="/css/application.css">
-		<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<title>Quora-Clone</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-		<div id="navbar">
-			<a class="quores" href="/">Quores</a>
-			
-			<div class="btn-group">
-				<% if logged_in? %>
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    <%= current_user.name %> <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu">
-				    <li><a href="/users/<%=current_user.id%>">Profile</a></li>
-				    <li role="separator" class="divider"></li>
-				    <li><a href="/logout">Logout</a></li>
-				  </ul>
-				<% else %>
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Guest <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-					  <li><a href="/login">Login</a></li>
-					</ul>
-				<% end %>
-			</div>
-	</div>
-		<div id="main-container">
-			<%= yield %>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/application.css">
+	<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Quora-Clone</title>
+	<script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/blog-post.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default">
+		<div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">Quores</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<form action="/question" method="post" class="navbar-form navbar-left">
+					<input type="text" name="question[question]" placeholder="Ask Question on Quora" class="form-control">
+					<input type="submit" value="Ask Question" class="btn btn-default"">
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	        	<% if logged_in? %>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %><span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		          	<li><a href="/users/<%=current_user.id%>">Profile</a></li>
+						    <li role="separator" class="divider"></li>
+						    <li><a href="/logout">Logout</a></li>
+						  </ul>
+	          <% else %>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Guest<span class="caret"></span></a>
+			        <ul class="dropdown-menu">
+			          <li><a href="/login">Login</a></li>
+							</ul>
+						<% end %>
+	        </li>
+	      </ul>
+ 			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	
+  <div class="container">
+  	<%= yield %>
+  </div>
+  
+</body>
+
 </html>
 
 
